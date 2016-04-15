@@ -273,16 +273,18 @@
 				if (!hands[j]) {
 					hands[j] = new THREE.Mesh(new THREE.TetrahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j])
-					colorArray[j] = {r: 0.75, g: 0.265, b: 0.28};
+					colorArray[j] = {r: j/2, g: 0.265, b: 0.28};
 				}
-				if(handControl.pose.position){
+				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
 				}
 				for (var k = 0; k < handControl.buttons.length; ++k) {
-            if (handControl.buttons[k].pressed) {
-							//position blob
-							blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
-							b++;
+            	if (handControl.buttons[k].pressed) {
+            		//color blob with controller color
+					blob[b%blobNumber].material.color = colorArray[j];
+					//position blob
+					blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
+					b++;
               break;
             }
           }
