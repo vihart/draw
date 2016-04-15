@@ -299,7 +299,7 @@
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
 					for(var i = 0; i < bucketNumber; i++){//dip logic
-						bucketDistance[i] = hands[j].position.distanceTo(bucket[i].position;
+						bucketDistance[i] = hands[j].position.distanceTo(bucket[i].position);
 						if(bucketDistance[i]<dipDistance){
 							colorArray[j] = bucket[i].material.color;
 						}
