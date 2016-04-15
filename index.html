@@ -226,6 +226,7 @@
 		//color array
 		var colorArray = [];
 		var dipDistance = 1;
+		var relativeBucket = [];
 
 
 
@@ -244,6 +245,15 @@
 			}
 
 			littlerPink.rotation.y = Math.sin(t/26);
+
+			//relative Bucket Position Array Set Stuff
+			for(var i = 0; i<bucketNumber; i++){
+				relativeBucket = new THREE.Vector3(
+					bucket[i]position.x/c,
+					bucket[i]position.y/c,
+					bucket[i]position.z/c
+					);
+			}
 
       /*
 				Character animation
@@ -299,7 +309,7 @@
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
 					for(var i = 0; i < bucketNumber; i++){//dip logic
-						bucketDistance[i] = hands[j].position.distanceTo(bucket[i].position);
+						bucketDistance[i] = hands[j].position.distanceTo(relativeBucket[i].position);
 						if(bucketDistance[i]<dipDistance){
 							colorArray[j] = bucket[i].material.color;
 						}
