@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>Unscannable</title>
+		<title>Drawing in WebVR!</title>
 		<!--
 		Attribution
 		eleVR webvr boilerplate: https://github.com/hawksley
@@ -225,7 +225,7 @@
 
 		//color array
 		var colorArray = [];
-		var dipDistance = 1;
+		var dipDistance = 0.2;
 		var relativeBucket = [];
 
 
@@ -312,6 +312,7 @@
 						bucketDistance[i] = hands[j].position.distanceTo(relativeBucket[i]);
 						if(bucketDistance[i]<dipDistance){
 							colorArray[j] = bucket[i].material.color;
+							hands[j].material.color = colorArray[j];
 						}
 					}
 				}
