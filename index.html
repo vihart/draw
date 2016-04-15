@@ -190,11 +190,11 @@
 		var bucketNumber = 10;
 		for(var i = 0; i < bucketNumber; i++){
 			bucket[i] = new THREE.Mesh(
-				new THREE.CylinderGeometry(2.5, 2.5, 5, 6, 1),
+				new THREE.CylinderGeometry(2, 2, 4, 17, 1),
 				new THREE.MeshPhongMaterial()
 				);
 			bucket[i].material.color.setHSL(i/bucketNumber, 0.5, 0.5);
-			bucket[i].position.set(0,2.5,i/2);
+			bucket[i].position.set(0,2,3*i - 5);
 			buckets.add(bucket[i]);
 		}
 		everything.add(buckets);
