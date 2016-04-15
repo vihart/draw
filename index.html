@@ -190,11 +190,11 @@
 		var bucketNumber = 10;
 		for(var i = 0; i < bucketNumber; i++){
 			bucket[i] = new THREE.Mesh(
-				new THREE.CylinderGeometry(2, 2, 4, 17, 1),
+				new THREE.CylinderGeometry(1.7, 1.7, 3, 17, 1),
 				new THREE.MeshPhongMaterial()
 				);
 			bucket[i].material.color.setHSL(i/bucketNumber, 0.5, 0.5);
-			bucket[i].position.set(0,2,3*i - 5);
+			bucket[i].position.set(0,2,3*i - 6);
 			buckets.add(bucket[i]);
 		}
 		everything.add(buckets);
@@ -223,6 +223,7 @@
 
 		//color array
 		var colorArray = [];
+		var dipDistance = 1;
 
 
 
@@ -295,6 +296,11 @@
 				}
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
+					for(var i = 0; i < bucketNumber; i++){
+						if(hands[j].position.distanceTo(bucket[i].position)<dipDistance){
+							colorArray[j] = bucket[i].material.color;
+						}
+					}
 				}
 				for (var k = 0; k < handControl.buttons.length; ++k) {
             	if (handControl.pose && handControl.buttons[k].pressed) {
