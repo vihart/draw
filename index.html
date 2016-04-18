@@ -208,7 +208,7 @@
 		var bucketFace = bucket[9].geometry.faces.length;
 		for(var i = 0; i < bucketFace; i++){//special rainbow bucket
 			for(var j = 0; j < 3; j++){
-				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, i%j/bucketFace, i/2);
+				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%j)/bucketFace, i/2);
 			}
 		}
 
@@ -342,7 +342,8 @@
 	            		if(colorArray[j] == "rainbow"){
 	            			blob[b%blobNumber].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
 						} else{
-							blob[b%blobNumber].material.color = colorArray[j];
+							var tempColor = new THREE.Color(colorArray[j].r, colorArray[j].g, colorArray[j].b);
+							blob[b%blobNumber].material.color = tempColor;
 						}
 						blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
 						b++;
