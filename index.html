@@ -329,9 +329,7 @@
 							if(i == 9){ //9 is raindboww bucket
 								colorArray[j] = "rainbow";
 							} else{
-								var tempColor;
-								tempColor.copy(bucket[i].material.color);
-								colorArray[j] = tempColor;
+								colorArray[j] = bucket[i].material.color + "";
 								hands[j].material.color = colorArray[j];
 							}
 						}
