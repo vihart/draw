@@ -325,11 +325,10 @@
 						bucketDistance[i] = hands[j].position.distanceTo(relativeBucket[i]);
 						if(bucketDistance[i]<dipDistance){
 							if(i == 9){ //9 is raindboww bucket
-								colorArray[j] = "rainbow";
+								colorArray[j] = 1;// 1 means rainbow
 							} else{
 								colorArray[j] = bucket[i].material.color;
 								hands[j].material.color = colorArray[j];
-								rainbow = false;
 							}
 						}
 					}
@@ -337,8 +336,8 @@
 				for (var k = 0; k < handControl.buttons.length; ++k) {
 	            	if (handControl.pose && handControl.buttons[k].pressed) {
 	            		//color blob with controller color
-	            		if(colorArray[j] = "rainbow"){
-	            			blob[b%blobNumber].material.color.setHSL(1/(b%blobNumber), 0.5, 0.5);
+	            		if(colorArray[j] = 1){
+	            			blob[b%blobNumber].material.color.setHSL((b%blobNumber)/(blobNumber), 0.5, 0.5);
 						} else{
 							blob[b%blobNumber].material.color = colorArray[j];
 						}
