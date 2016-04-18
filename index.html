@@ -208,8 +208,8 @@
 		var bucketFace = bucket[9].geometry.faces.length;
 		for(var i = 0; i < bucketFace; i++){//special rainbow bucket
 			for(var j = 0; j < 3; j++){
-				// bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%(j+1))/bucketFace, (i/2)/bucketFace);
-				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(Math.random(), Math.random(), Math.random());
+				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%(j+1))/bucketFace, (i/2)/bucketFace);
+				// bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(Math.random(), Math.random(), Math.random());
 			}
 		}
 
