@@ -329,7 +329,8 @@
 							if(i == 9){ //9 is raindboww bucket
 								colorArray[j] = "rainbow";
 							} else{
-								colorArray[j] = bucket[i].material.color + "";
+								var tempColor = new THREE.Color(bucket[i].material.color.r, bucket[i].material.color.g, bucket[i].material.color.b);
+								colorArray[j] = tempColor;
 								hands[j].material.color = colorArray[j];
 							}
 						}
