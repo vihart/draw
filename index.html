@@ -191,7 +191,7 @@
 		for(var i = 0; i < bucketNumber; i++){
 			bucket[i] = new THREE.Mesh(
 				new THREE.CylinderGeometry(1.7, 1.7, 3, 17, 1),
-				new THREE.MeshPhongMaterial()
+				new THREE.MeshPhongMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors })
 				);
 			bucket[i].position.set(0,2,3*i - 6);
 			buckets.add(bucket[i]);
@@ -206,7 +206,6 @@
 
 
 		var bucketFace = bucket[9].geometry.faces.length;
-		bucket[9].material.color.setRGB(1,0,0);
 		for(var i = 0; i < bucketFace; i++){//special rainbow bucket
 			for(var j = 0; j < 3; j++){
 				// bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%(j+1))/bucketFace, (i/2)/bucketFace);
