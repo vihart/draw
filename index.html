@@ -340,7 +340,7 @@
             			blob[b%blobNumber].material.color.setHSL(b%blobNumber, 0.5, 0.5);
 					} else{
 						blob[b%blobNumber].material.color = colorArray[j];
-						blob[b%blobNumber].position.set(handControl.pose.position[0], 
+						blob[b%blobNumber].position.set(handControl.pose.position[0]);
 					}
 					handControl.pose.position[1], handControl.pose.position[2]);
 					b++;
