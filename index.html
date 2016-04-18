@@ -206,9 +206,11 @@
 
 
 		var bucketFace = bucket[9].geometry.faces.length;
+		bucket[9].material.color.setRGB(1,0,0);
 		for(var i = 0; i < bucketFace; i++){//special rainbow bucket
 			for(var j = 0; j < 3; j++){
-				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%(j+1))/bucketFace, i/2);
+				// bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i/bucketFace, (i%(j+1))/bucketFace, (i/2)/bucketFace);
+				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(Math.random(), Math.random(), Math.random());
 			}
 		}
 
