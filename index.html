@@ -329,7 +329,7 @@
 							if(i == 9){ //9 is raindboww bucket
 								colorArray[j] = "rainbow";
 							} else{
-								colorArray[j] = bucket[i].material.color;
+								colorArray[j].copy(bucket[i].material.color);
 								hands[j].material.color = colorArray[j];
 							}
 						}
@@ -339,7 +339,7 @@
 	            	if (handControl.pose && handControl.buttons[k].pressed) {
 	            		//color blob with controller color
 	            		if(colorArray[j] == "rainbow"){
-	            			blob[b%blobNumber].material.color.setHSL((b%(blobNumber/8))/(blobNumber), 0.5, 0.5);
+	            			blob[b%blobNumber].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
 						} else{
 							blob[b%blobNumber].material.color = colorArray[j];
 						}
