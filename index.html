@@ -225,7 +225,7 @@
 
 		for (var i = 0; i < blobNumber; i++){
 			blob[i] = new THREE.Mesh(
-				new THREE.IcosahedronGeometry(.04),
+				new THREE.OctahedronGeometry(.05),
 				new THREE.MeshPhongMaterial({color: 0xffff43})
 				);
 			blob[i].material.color.setHSL(i/blobNumber, 0.5, 0.5);
@@ -317,7 +317,7 @@
 				if (!hands[j]) {
 					hands[j] = new THREE.Mesh(new THREE.TetrahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
-					colorArray[j] = new THREE.Color(1, 1/(2*j), 1/j);
+					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(j+1));
 				}
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
@@ -325,7 +325,7 @@
 						bucketDistance[i] = hands[j].position.distanceTo(relativeBucket[i]);
 						if(bucketDistance[i]<dipDistance){
 							if(i == 9){ //9 is raindboww bucket
-								rainbow = true;
+								colorArray[j] = "rainbow";
 							} else{
 								colorArray[j] = bucket[i].material.color;
 								hands[j].material.color = colorArray[j];
@@ -335,18 +335,18 @@
 					}
 				}
 				for (var k = 0; k < handControl.buttons.length; ++k) {
-            	if (handControl.pose && handControl.buttons[k].pressed) {
-            		//color blob with controller color
-            		if(rainbow){
-            			blob[b%blobNumber].material.color.setHSL(b%blobNumber, 0.5, 0.5);
-					} else{
-						blob[b%blobNumber].material.color = colorArray[j];
-					}
-					blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
-					b++;
-              break;
-            }
-          }
+	            	if (handControl.pose && handControl.buttons[k].pressed) {
+	            		//color blob with controller color
+	            		if(colorArray[j] = "rainbow"){
+	            			blob[b%blobNumber].material.color.setHSL(1/(b%blobNumber), 0.5, 0.5);
+						} else{
+							blob[b%blobNumber].material.color = colorArray[j];
+						}
+						blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
+						b++;
+		              break;
+		            }
+    	     	}
 
 				if(debug) {
 					console.timeEnd("controls");
