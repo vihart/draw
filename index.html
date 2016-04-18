@@ -193,11 +193,22 @@
 				new THREE.CylinderGeometry(1.7, 1.7, 3, 17, 1),
 				new THREE.MeshPhongMaterial()
 				);
-			bucket[i].material.color.setHSL(i/bucketNumber, 0.5, 0.5);
 			bucket[i].position.set(0,2,3*i - 6);
 			buckets.add(bucket[i]);
 		}
 		everything.add(buckets);
+
+		for(var j = 0; j < 7; j++){//make first 7 buckets each a color of the rainbow
+			bucket[i].material.color.setHSL(j/7, 0.5, 0.5);
+		}
+		bucket[7].material.color.setHSL(1, 0, 1);//white
+		bucket[8].material.color.setHSL(1, 0, 0);//black
+
+		for(var i = 0; i< bucket[9].geometry.faces.length; i++){
+			for(var j = 0; j < 3; j++){
+				bucket[9].geometry.faces[i].vertexColors[j] = new THREE.Color(i, i%j, i/2);
+			}
+		}
 
 		var bucketDistance = [];
 
@@ -227,6 +238,8 @@
 		var colorArray = [];
 		var dipDistance = 0.2;
 		var relativeBucket = [];
+
+		var rainbow = false;
 
 
 
@@ -304,7 +317,6 @@
 				if (!hands[j]) {
 					hands[j] = new THREE.Mesh(new THREE.TetrahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
-					colorArray[j] = {r: j/2, g: 0.265, b: 0.28};
 				}
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
@@ -313,15 +325,24 @@
 						if(bucketDistance[i]<dipDistance){
 							colorArray[j] = bucket[i].material.color;
 							hands[j].material.color = colorArray[j];
+							if(i == 9){ //9 is raindboww bucket
+								rainbow = true;
+							} else{
+								rainbow = false;
+							}
 						}
 					}
 				}
 				for (var k = 0; k < handControl.buttons.length; ++k) {
             	if (handControl.pose && handControl.buttons[k].pressed) {
             		//color blob with controller color
-					blob[b%blobNumber].material.color = colorArray[j];
-					//position blob
-					blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
+            		if(rainbow){
+            			blob[b%blobNumber].material.color.setHSL(b%blobNumber, 0.5, 0.5);
+					} else{
+						blob[b%blobNumber].material.color = colorArray[j];
+						blob[b%blobNumber].position.set(handControl.pose.position[0], 
+					}
+					handControl.pose.position[1], handControl.pose.position[2]);
 					b++;
               break;
             }
