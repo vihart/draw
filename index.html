@@ -222,10 +222,10 @@
 
 		for(var i = 0; i < brushNumber; i++){
 			brush[i] = new THREE.Mesh(
-				new THREE.OctahedronGeometry(.06),
+				new THREE.OctahedronGeometry(1),
 				new THREE.MeshPhongMaterial({ color: 0xffffff })
 				);
-			brush[i].position.set(-2,2,3*i - 6);
+			brush[i].position.set(2,2,3*i - 6);
 			var brushScale = (i+1)/4;
 			brush[i].scale.set(brushScale,brushScale,brushScale);
 			brushes.add(brush[i]);
@@ -377,6 +377,7 @@
 					}
 
 					for(var i = 0; i < brushNumber; i++){//collision for grabbing brushes
+						brushDistance[i] = hands[j].position.distanceTo(relativeBrush[i]);
 						if(brushDistance[i] < grabDistance){
 							brushArray[j] = brush[i].scale.x;//set hand tool size to brush size
 						}
