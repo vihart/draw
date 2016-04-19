@@ -226,7 +226,8 @@
 				new THREE.MeshPhongMaterial({ color: 0xffffff })
 				);
 			brush[i].position.set(-2,2,3*i - 6);
-			brush[i].scale.set(i/4);
+			var brushScale = (i+1)/4;
+			brush[i].scale.set(brushScale,brushScale,brushScale);
 			brushes.add(brush[i]);
 		}
 		everything.add(brushes);
