@@ -91,7 +91,7 @@
 		var floorMaterial = new THREE.MeshBasicMaterial( {map: floorImage, color: 0x0475a1, side: THREE.DoubleSide} );
 		var floor = new THREE.Mesh( floorGeometry, floorMaterial );
 		floor.rotation.x = 90 * Math.PI/180;
-		floor.position.y = 0;
+		floor.position.set(0,-0.25,0);
 		floor.scale.set(8,8,8);
 		scene.add( floor );
 
@@ -226,7 +226,7 @@
 				new THREE.MeshPhongMaterial({ color: 0xffffff })
 				);
 			brush[i].position.set(30,2,3*i - 6);
-			var brushScale = (i+1)/7;
+			var brushScale = ((2*i)+1)/7;
 			brush[i].scale.set(brushScale,brushScale,brushScale);
 			brushes.add(brush[i]);
 		}
@@ -391,9 +391,11 @@
 
 				var handControl = controls.controllers[j]
 				if (!hands[j]) {
-					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
+					//create a new hands[j] for each controller
+					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.03), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
 					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(2*j+1));
+					hands[j].color.setRGB(colorArray[j].r, colorArray[j].g, colorArray[j].b);
 					brushArray[j] = 1;
 				}
 				if(handControl.pose){
