@@ -237,8 +237,11 @@
 		};
 		scene.add(glob);
 
-		//color array
+		//color array, color per hand control
 		var colorArray = [];
+		//size array, per hand control
+		var brushArray = [];
+
 		var dipDistance = 0.2;
 		var relativeBucket = [];
 
@@ -320,7 +323,8 @@
 				if (!hands[j]) {
 					hands[j] = new THREE.Mesh(new THREE.TetrahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
-					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(j+1));
+					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(2*j+1));
+					brushArray[j] = 1+j;
 				}
 				if(handControl.pose){
 					hands[j].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
@@ -339,13 +343,18 @@
 				}
 				for (var k = 0; k < handControl.buttons.length; ++k) {
 	            	if (handControl.pose && handControl.buttons[k].pressed) {
-	            		//color blob with controller color
+	            		//get blob to be drawn
+	            		var thisBlob = b%blobNumber;
+	            		//color new blob with controller color
 	            		if(colorArray[j] == "rainbow"){
-	            			blob[b%blobNumber].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
+	            			blob[thisBlob].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
 						} else{
 							var tempColor = new THREE.Color(colorArray[j].r, colorArray[j].g, colorArray[j].b);
-							blob[b%blobNumber].material.color = tempColor;
+							blob[thisBlob].material.color = tempColor;
 						}
+						//size new blob
+						blob[thisBlob].scale.set(brushArray[j],brushArray[j],brushArray[j]);
+						//position new blob
 						blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
 						b++;
 		              break;
