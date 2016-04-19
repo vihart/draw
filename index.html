@@ -193,7 +193,7 @@
 				new THREE.CylinderGeometry(1.7, 1.7, 3, 17, 1),
 				new THREE.MeshPhongMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors })
 				);
-			bucket[i].position.set(0,2,3*i - 6);
+			bucket[i].position.set(0,2,4*i - 10);
 			buckets.add(bucket[i]);
 		}
 		everything.add(buckets);
@@ -225,7 +225,7 @@
 				new THREE.OctahedronGeometry(1),
 				new THREE.MeshPhongMaterial({ color: 0xffffff })
 				);
-			brush[i].position.set(30,2,3*i - 6);
+			brush[i].position.set(30,2,4*i - 10);
 			var brushScale = ((2*i)+1)/7;
 			brush[i].scale.set(brushScale,brushScale,brushScale);
 			brushes.add(brush[i]);
@@ -392,7 +392,7 @@
 				var handControl = controls.controllers[j]
 				if (!hands[j]) {
 					//create a new hands[j] for each controller
-					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.03), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
+					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.05), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
 					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(2*j+1));
 					hands[j].material.color.setRGB(colorArray[j].r, colorArray[j].g, colorArray[j].b);
