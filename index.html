@@ -395,7 +395,7 @@
 					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.03), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
 					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(2*j+1));
-					hands[j].color.setRGB(colorArray[j].r, colorArray[j].g, colorArray[j].b);
+					hands[j].material.color.setRGB(colorArray[j].r, colorArray[j].g, colorArray[j].b);
 					brushArray[j] = 1;
 				}
 				if(handControl.pose){
