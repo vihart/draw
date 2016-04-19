@@ -286,10 +286,16 @@
 			blobLog = "blob log time";
 
 			for(var i = 0; i < blobNumber; i++){
-				blobLog += (blob[i].position);
+				blobLog += "blob[";
+				blobLog += i;
+				blobLog += "].position.set(";
+				blobLog += blob[i].position.x;
+				blobLog += blob[i].position.y;
+				blobLog += blob[i].position.z;
+				blobLog += ");";
 			}
 
-			console.log("blob[0].position.set(", blob[0].position, ");");
+			console.log(blobLog);
 		}
 
 		function animate() {
