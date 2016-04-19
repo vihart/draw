@@ -281,7 +281,12 @@
 		var prevSelected = null;
 
 		function blobSave(){
-			var blobLog = "blob log time" + blob[0].position;
+			var blobLog = "blob log time";
+
+			for(var i = 0; i < blobNumber; i++){
+				blobLog.append(blob[i].position);
+			}
+
 			console.log(blobLog);
 		}
 
