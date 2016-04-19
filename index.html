@@ -391,7 +391,7 @@
 
 				var handControl = controls.controllers[j]
 				if (!hands[j]) {
-					hands[j] = new THREE.Mesh(new THREE.TetrahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
+					hands[j] = new THREE.Mesh(new THREE.OctahedronGeometry(.02), new THREE.MeshBasicMaterial({color: 0xEE0443, wireframe: true}));
 					scene.add(hands[j]);
 					colorArray[j] = new THREE.Color(1, 1/(2*(j+1)), 1/(2*j+1));
 					brushArray[j] = 1;
