@@ -280,14 +280,16 @@
 		var tb = 1;
 		var prevSelected = null;
 
+		var blobLog;
+
 		function blobSave(){
-			var blobLog = "blob log time";
+			blobLog = "blob log time";
 
 			for(var i = 0; i < blobNumber; i++){
-				blobLog.append(blob[i].position);
+				blobLog.concat(blob[i].position);
 			}
 
-			console.log(blobLog);
+			console.log("blob[0].position.set(", blob[0].position, ");");
 		}
 
 		function animate() {
