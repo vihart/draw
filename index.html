@@ -290,8 +290,28 @@
 				blobLog += i;
 				blobLog += "].position.set(";
 				blobLog += blob[i].position.x;
+				blobLog += ", ";
 				blobLog += blob[i].position.y;
+				blobLog += ", ";
 				blobLog += blob[i].position.z;
+				blobLog += ");";
+				blobLog += "blob[";
+				blobLog += i;
+				blobLog += "].scale.set(";
+				blobLog += blob[i].scale.x;
+				blobLog += ", ";
+				blobLog += blob[i].scale.y;
+				blobLog += ", ";
+				blobLog += blob[i].scale.z;
+				blobLog += ");";
+				blobLog += "blob[";
+				blobLog += i;
+				blobLog += "].material.color.setRGB(";
+				blobLog += blob[i].material.color.r;
+				blobLog += ", ";
+				blobLog += blob[i].material.color.g;
+				blobLog += ", ";
+				blobLog += blob[i].material.color.b;
 				blobLog += ");";
 			}
 
