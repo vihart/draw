@@ -128,7 +128,6 @@
 		};
 
 		// var apricot = new THREE.Object3D();
-		var littlerPink = new THREE.Object3D();
 
 		var objmtlLoader = new THREE.OBJMTLLoader();
 
@@ -141,15 +140,6 @@
 		// 	apricot = object;
 		// 	scene.add( apricot );
 		// }, onProgress, onError );
-
-		objmtlLoader.load( 'objs/littlerpink2/littlierpink.obj', 'objs/littlerpink2/littlier_pink.mtl', function ( object ) {
-			object.position.set(-0.8,1.5,-2);
-			object.scale.set(0.001,0.001,0.001);
-			littlerPink = object;
-			scene.add( littlerPink );
-		}, onProgress, onError );
-
-
 
 		//bird
 		var bird = [];
@@ -243,7 +233,7 @@
 		var b = 0; //blob counting
 
 		//create initial blobs
-		var blobNumber = 750;
+		var blobNumber = 500;
 
 		for (var i = 0; i < blobNumber; i++){
 			blob[i] = new THREE.Mesh(
@@ -324,8 +314,6 @@
 				console.timeEnd("everything");
 				console.time("animate");
 			}
-
-			littlerPink.rotation.y = Math.sin(t/26);
 
 			//relative Bucket Position Array Set Stuff
 			for(var i = 0; i<bucketNumber; i++){
