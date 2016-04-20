@@ -221,7 +221,7 @@
 			brushes.add(brush[i]);
 		}
 		everything.add(brushes);
-		
+
 		var brushDistance = [];
 
 
@@ -403,34 +403,37 @@
 						}
 					}
 
-					for(var i = 0; i < brushNumber; i++){//collision for grabbing brushes
+					for(var i = 0; i < brushNumber; i++){	//collision for grabbing brushes
 						brushDistance[i] = hands[j].position.distanceTo(relativeBrush[i]);
 						if(brushDistance[i] < grabDistance){
-							brushArray[j] = brush[i].scale.x;//set hand tool size to brush size
+							brushArray[j] = brush[i].scale.x;	//set hand tool size to brush size
 							hands[j].scale.set(brush[i].scale.x,brush[i].scale.x,brush[i].scale.x);
 						}
 					}
 
 				}
-				for (var k = 0; k < handControl.buttons.length; ++k) {
-	            	if (handControl.pose && handControl.buttons[k].pressed) {
-	            		//get blob to be drawn
-	            		var thisBlob = b%blobNumber;
-	            		//color new blob with controller color
-	            		if(colorArray[j] == "rainbow"){
-	            			blob[thisBlob].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
-						} else{
-							var tempColor = new THREE.Color(colorArray[j].r, colorArray[j].g, colorArray[j].b);
-							blob[thisBlob].material.color = tempColor;
-						}
-						//size new blob
-						blob[thisBlob].scale.set(brushArray[j],brushArray[j],brushArray[j]);
-						//position new blob
-						blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);
-						b++;
-		              break;
-		            }
-    	     	}
+
+				if (handControl.pose && handControl.buttons[4].pressed) { // enter VR mode
+					vrMode = !vrMode;
+					effect.setVRMode(vrMode);
+				}
+
+        if (handControl.pose && handControl.buttons[2].pressed) { //draw stuff
+      		var thisBlob = b%blobNumber;	//get blob to be drawn
+
+      		//color new blob with controller color
+      		if(colorArray[j] == "rainbow"){
+      			blob[thisBlob].material.color.setHSL((b%(blobNumber/8))/(blobNumber/8), 0.5, 0.5);
+					} else{
+						var tempColor = new THREE.Color(colorArray[j].r, colorArray[j].g, colorArray[j].b);
+						blob[thisBlob].material.color = tempColor;
+					}
+
+					blob[thisBlob].scale.set(brushArray[j],brushArray[j],brushArray[j]); 	//size new blob
+					blob[b%blobNumber].position.set(handControl.pose.position[0], handControl.pose.position[1], handControl.pose.position[2]);	//position new blob
+
+					b++;
+        }
 
 				if(debug) {
 					console.timeEnd("controls");
