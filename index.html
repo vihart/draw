@@ -309,6 +309,7 @@
 		}
 
 		var vrModeGamePadButtonPressed = false; // because of annoying way gamepad buttons work
+		var pressedController = -1;
 
 		function animate() {
 
@@ -416,9 +417,11 @@
 				}
 
 				if (handControl.pose && handControl.buttons[4].pressed) { // enter VR mode
+					pressedController = j;
 					vrModeGamePadButtonPressed = true;
-				} else if (vrModeGamePadButtonPressed) {
+				} else if (vrModeGamePadButtonPressed && pressedController === j) {
 					vrModeGamePadButtonPressed = false;
+					pressedController = -1;
 					vrMode = !vrMode;
 					effect.setVRMode(vrMode);
 				}
