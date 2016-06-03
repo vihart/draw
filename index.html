@@ -57,6 +57,9 @@
 		var effect = new THREE.VREffect( renderer );
 		effect.setSize( window.innerWidth, window.innerHeight );
 
+		
+		var everything = new THREE.Object3D;
+
 		/*
 		Light
 		*/
@@ -79,7 +82,7 @@
 		var skyMaterial = new THREE.MeshBasicMaterial( { map: skyTexture, side: THREE.DoubleSide } );
 		var skyGeometry1 = new THREE.SphereGeometry(55, 30, 30);
 		var skybox = new THREE.Mesh( skyGeometry1, skyMaterial );
-	// skybox.scale.set(15,15,15);
+		skybox.scale.set(15,15,15);
 		everything.add( skybox );
 
 		/*
@@ -92,6 +95,7 @@
 		var floorMaterial = new THREE.MeshBasicMaterial( {map: floorImage, color: 0x0475a1, side: THREE.DoubleSide} );
 		var floor = new THREE.Mesh( floorGeometry, floorMaterial );
 		floor.rotation.x = 90 * Math.PI/180;
+		floor.scale.set(15*8,15*8,15*8);
 		floor.position.set(0,0,0);
 		everything.add( floor );
 
@@ -168,7 +172,6 @@
 
 		  flock.add(bird[i]);
 		};
-		var everything = new THREE.Object3D;
 		everything.add(flock);
 		everything.scale.set(1/15, 1/15, 1/15);
 		flock.scale.set(2,2,2);
