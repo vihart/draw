@@ -311,7 +311,11 @@
 		var vrModeGamePadButtonPressed = false; // because of annoying way gamepad buttons work
 		var pressedController = -1;
 
+		var manualPosition = new THREE.Vector3(0,0,0);
+
 		function animate() {
+
+
 
 			if(debug) {
 				console.timeEnd("everything");
@@ -321,17 +325,17 @@
 			//relative Bucket Position Array Set Stuff
 			for(var i = 0; i<bucketNumber; i++){
 				relativeBucket[i] = new THREE.Vector3(
-					bucket[i].position.x*c,
-					bucket[i].position.y*c,
-					bucket[i].position.z*c
+					bucket[i].position.x*c + manualPosition.x,
+					bucket[i].position.y*c + manualPosition.y,
+					bucket[i].position.z*c + manualPosition.z
 					);
 			}
 			//relative Brush position array set stuff
 			for(var i = 0; i<brushNumber; i++){
 				relativeBrush[i] = new THREE.Vector3(
-					brush[i].position.x*c,
-					brush[i].position.y*c,
-					brush[i].position.z*c
+					brush[i].position.x*c + manualPosition.x,
+					brush[i].position.y*c + manualPosition.y,
+					brush[i].position.z*c + manualPosition.z
 					);
 			}
 
@@ -485,6 +489,24 @@
 	    	controls.zeroSensor(); //zero rotation
 	    } else if (event.keyCode == 70) { //f
 	    	effect.setFullScreen(true) //fullscreen
+		  } else if (event.keyCode == 73) { //i
+		    manualPosition.x += 0.01; //
+		    everything.position.x += 0.01; //
+		  } else if (event.keyCode == 75) { //k
+		    manualPosition.x -= 0.01; //
+		    everything.position.x += 0.01; //
+		  } else if (event.keyCode == 74) { //j
+		    manualPosition.z += 0.01; //
+		    everything.position.z += 0.01; //
+		  } else if (event.keyCode == 76) { //l
+		    manualPosition.z -= 0.01; //
+		    everything.position.z += 0.01; //
+		  } else if (event.keyCode == 85) { //u
+		    manualPosition.y += 0.01; //
+		    everything.position.y += 0.01; //
+		  } else if (event.keyCode == 79) { //o
+		    manualPosition.y -= 0.01; //
+		    everything.position.y += 0.01; //
 	  	} else if (event.keyCode == 86 || event.keyCode == 13 || event.keyCode == 32 ) { // v or 'enter' or 'space' for VR mode
 		    vrMode = !vrMode;
 		    effect.setVRMode(vrMode);
