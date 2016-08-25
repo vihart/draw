@@ -314,7 +314,8 @@
 		var vrModeGamePadButtonPressed = false; // because of annoying way gamepad buttons work
 		var pressedController = -1;
 
-		var manualPosition = new THREE.Vector3(0,0,0);
+		var manualPosition = new THREE.Vector3(-0.27, -1.28, 1.2);
+		everything.position.set(manualPosition.x,manualPosition.y,manualPosition.z)
 
 		function animate() {
 
@@ -513,7 +514,10 @@
 	  	} else if (event.keyCode == 86 || event.keyCode == 13 || event.keyCode == 32 ) { // v or 'enter' or 'space' for VR mode
 		    vrMode = !vrMode;
 		    effect.setVRMode(vrMode);
-			}
+		}else if (event.keyCode == 88){//x for setting 0,0,0 pos
+		  	manualPosition.set(camera.position.x,camera.position.y,camera.position.z);
+			everything.position.set(manualPosition.x, manualPosition.y, manualPosition.z);
+		  }
 
 	  };
 
